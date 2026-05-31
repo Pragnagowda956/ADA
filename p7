@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+    int n, i, capacity;
+    printf("Enter the number of objects: ");
+    scanf("%d", &n);
+    int w[n], p[n], x[n];
+    printf("Enter the objects' weights: ");
+    for(i = 0; i < n; i++)
+        scanf("%d", &w[i]);
+    printf("Enter the objects' profits: ");
+    for(i = 0; i < n; i++)
+        scanf("%d", &p[i]);
+    printf("Enter the maximum capacity: ");
+    scanf("%d", &capacity);
+    float ratio[n];
+    for(i = 0; i < n; i++){
+        ratio[i] = (float)p[i] / w[i];
+        x[i] = 0; }
+    int maxIndex = 0;
+    for(i = 1; i < n; i++)
+    {
+        if(ratio[i] > ratio[maxIndex])
+            maxIndex = i;
+    }
+    if(w[maxIndex] <= capacity)
+        x[maxIndex] = 1;
+    printf("Optimal solution for greedy method: %.1f\n", (float)p[maxIndex]);
+    printf("Solution vector for greedy method: ");
+    for(i = 0; i < n; i++)
+        printf("%d ", x[i]);
+    return 0;}
